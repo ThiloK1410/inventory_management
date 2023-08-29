@@ -14,8 +14,13 @@ In the current folder, execute the following commands:
    ```bash
    pip install -r requirements.txt
    ```
+
+4. Run the database migrations (Installs the data model):
+   ```bash
+   python manage.py migrate
+   ```
    
-4. Run the server using the following command:
+5. Run the server using the following command:
    ```bash
    python manage.py runserver
    ```
