@@ -4,11 +4,11 @@ In the current folder, execute the following commands:
 
 1. Create a new Python virtual environment:
    ```bash
-   python -m venv backend-env
+   python -m venv .venv
    ```
 2. Activate the virtual environment:
    ```bash
-   backend-env/Scripts/activate
+   .venv/Scripts/activate
    ```
 3. Install the required dependencies using pip:
    ```bash

@@ -6,34 +6,56 @@ import { Button } from "primereact/button";
 import axios from "axios";
 import { API_URL } from "./constants";
 
-type Test = {
+type Delivery = {
+  id: number;
+  cost: number;
+  brand: number[]
+}
+
+type Brand = {
+  id: number;
   name: string;
-  created: string;
+  bottle_size: number;
+  bottles_in_crate: number
 }
 
 export const App: React.FunctionComponent = () => {
-  const [items, setItems] = useState<Test[]>([])
+  const [deliveries, setDeliveries] = useState<Delivery[]>([])
+  const [brands, setBrands] = useState<Brand[]>([])
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get(API_URL + "/test/")
-      .then(response => setItems(response.data));
+    axios.get(API_URL + "/test/delivery/")
+      .then(response => setDeliveries(response.data));
+    axios.get(API_URL + "/test/brand/")
+      .then(response => setBrands(response.data));
   }, [])
+
+  const brandTemplate = (data: any) => {
+    const delivery = data as Delivery;
+    return delivery.brand.map(brandId => {
+      let brand = brands.find(brand => brand.id === brandId)
+      if (brand?.name === undefined)
+        return "Unbekannte Marke"
+      return brand.name
+    }).join(", ")
+  }
 
   return (
     <>
-      <DataTable value={items}>
-        <Column field="name" header="Name"></Column>
-        <Column field="created" header="Created"></Column>
+      <DataTable value={deliveries}>
+        <Column field="id" header="ID"></Column>
+        <Column field="cost" header="Kosten"></Column>
+        <Column body={brandTemplate} header="Marke"></Column>
       </DataTable>
       <form
         className="p-inputgroup"
         onSubmit={e => {
           e.preventDefault();
           setLoading(true);
-          axios.post(API_URL + "/test/create/", { name })
-            .then(response => setItems([...items, response.data]))
+          axios.post(API_URL + "/test/delivery/create/", { name })
+            .then(response => setDeliveries([...deliveries, response.data]))
             .finally(() => setLoading(false))
         }}
       >
