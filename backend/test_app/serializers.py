@@ -1,7 +1,12 @@
 from rest_framework import serializers
-from .models import Test
+from .models import Delivery, Brand
 
-class TestSerializer(serializers.ModelSerializer):
+class DeliverySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Test
+        model = Delivery
         fields = '__all__'
+
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = "__all__"
