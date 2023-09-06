@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Cash(models.Model):
-    cash_amount = models.DecimalFieldField(max_digits=6, decimal_places=2)
+    cash_amount = models.DecimalField(max_digits=6, decimal_places=2)
     date = models.DateField(auto_now_add=True)
     type = models.CharField()
 
