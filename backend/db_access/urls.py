@@ -7,5 +7,5 @@ urlpatterns = [
     path("transaction/", views.getTransactions),
     path('delivery/create/', views.createDelivery),
     path("brand/create/", views.createBrand),
-    path("transaction/create/", views.createBrand)
+    path("transaction/create/", views.createTransaction)
 ]

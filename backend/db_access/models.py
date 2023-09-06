@@ -7,6 +7,9 @@ class Transaction(models.Model):
     date = models.DateField(auto_now_add=True)
     type = models.CharField(max_length=200)
 
+    def __str__(self):
+        return f"{self.type}: {self.cash_amount}€"
+
 class Brand(models.Model):
     name = models.CharField(max_length=200)
     bottle_size = models.FloatField()
@@ -15,6 +18,9 @@ class Brand(models.Model):
 class Delivery(models.Model):
     date = models.DateField(auto_now_add=True)
     cost = models.ForeignKey(Transaction, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return f"{self.date}, {self.cost}"
 
 class Delivery_Brands(models.Model):
     delivery_id = models.OneToOneField(Delivery, on_delete=models.DO_NOTHING)

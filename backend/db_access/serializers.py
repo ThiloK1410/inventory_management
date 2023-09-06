@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Delivery, Brand, Transaction
 
 class DeliverySerializer(serializers.ModelSerializer):
+    brand = serializers.SlugRelatedField(slug_field="name", many=True, read_only=True)
     class Meta:
         model = Delivery
         fields = '__all__'
