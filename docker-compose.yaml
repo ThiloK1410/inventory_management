@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    expose:
+      - 8000
+    volumes:
+      - static_volume:/home/inventory_management/static
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - static_volume:/home/inventory_management/static
+    depends_on:
+      - web
+volumes:
+  static_volume:
