@@ -1,0 +1,14 @@
+.itemCard {
+  border: 0.2rem solid #114466D9;
+  border-radius: 1rem;
+  background-color: #FFF;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cost {
+  font-size: 1.5em;
+  align-self: flex-end;
+}

@@ -6,7 +6,14 @@ class TransactionSerializer(serializers.ModelSerializer):
         model = Transaction
         fields = "__all__"
 
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = "__all__"
+
 class BrandDeliverySerializer(serializers.ModelSerializer):
+    brand = BrandSerializer()
+
     class Meta:
         model = BrandDelivery
         exclude = ("delivery",)
@@ -32,8 +39,3 @@ class DeliverySerializer(serializers.ModelSerializer):
             BrandDelivery.objects.create(delivery=delivery, **brand_delivery)
 
         return delivery
-
-class BrandSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Brand
-        fields = "__all__"
