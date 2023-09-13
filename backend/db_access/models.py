@@ -33,3 +33,8 @@ class BrandDelivery(models.Model):
     # When a delivery is deleted all related records of BrandDelivery are deleted as well.
     delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name="brand_deliveries")
     crate_amount = models.IntegerField()
+
+class Inventory(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, unique=True)
+    bottle_amount = models.PositiveIntegerField(verbose_name="amount of bottles")
+
