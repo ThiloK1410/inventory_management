@@ -1,22 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { API_URL } from "../../constants";
-import { Delivery } from "../../types/delivery";
-import { DeliveryItem } from "./delivery-item/delivery-item";
-import Styles from "./deliveries.module.css";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { DeliveriesOverview } from "./deliveries-overview/deliveries-overview";
+import { DeliveryEditor } from "./delivery-editor/delivery-editor";
 
 export const Deliveries: React.FunctionComponent = () => {
-  const [deliveries, setDeliveries] = useState<Delivery[]>([]);
-
-  useEffect(() => {
-    axios.get(API_URL + "/delivery/").then(response => setDeliveries(response.data));
-  }, []);
-
   return (
-    <div className={Styles.deliveries}>
-      {deliveries.map(delivery => (
-        <DeliveryItem key={delivery.id} delivery={delivery} />
-      ))}
-    </div>
+    <Routes>
+      <Route path="/" element={<DeliveriesOverview />} />
+      <Route path="/create" element={<DeliveryEditor />} />
+    </Routes>
   );
 };

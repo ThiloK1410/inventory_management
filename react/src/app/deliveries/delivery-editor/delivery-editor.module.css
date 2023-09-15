@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+}
+
+.topButtons {
+  display: flex;
+  flex-grow: 1;
+  gap: 0.5rem;
+}
+
+.topButtons>button {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.topButtons>button>span {
+  margin-right: 0.25rem;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input>span {
+  display: flex;
+}
+
+.input>span>input {
+  flex-grow: 1;
+}
+
+.brandDeliveryWrapper {
+  position: relative;
+}
+
+.deleteButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* Move inward and down due to border-radius of 0.2rem */
+  transform: translate(calc(50% - 0.2rem), calc(-50% + 0.2rem));
+  height: 1.75rem !important;
+  width: 1.75rem !important;
+}
+
+.invalid {
+  color: #f88c79;
+}

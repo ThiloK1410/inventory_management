@@ -13,7 +13,11 @@ const NavBar: React.FunctionComponent<NavBarProps> = props => {
   return (
     <nav className={Styles.navBackground}>
       {props.items.map(item => (
-        <NavLink className={({ isActive }) => (isActive ? Styles.active : "")} to={item.to}>
+        <NavLink
+          key={item.title}
+          className={({ isActive }) => (isActive ? Styles.active : "")}
+          to={item.to}
+        >
           <span>{item.title}</span>
         </NavLink>
       ))}

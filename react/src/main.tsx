@@ -1,3 +1,6 @@
+import "@fortawesome/fontawesome-free/css/fontawesome.css";
+import "@fortawesome/fontawesome-free/css/solid.css";
+import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/viva-light/theme.css";
 import React from "react";
 import ReactDOM from "react-dom/client";

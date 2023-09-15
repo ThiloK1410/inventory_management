@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Deliveries } from "./deliveries/deliveries";
 import { Inventory } from "./inventory/inventory";
-import { Statistics } from "./statistics/statistics";
 import NavBar from "./nav-bar/nav-bar";
+import { Statistics } from "./statistics/statistics";
 
 const navBarItems = [
   { to: "/", title: "Inventory" },
@@ -17,7 +17,7 @@ export const App: React.FunctionComponent = () => {
       <Routes>
         <Route path="/" element={<Inventory />} />
         <Route path="statistics" element={<Statistics />} />
-        <Route path="deliveries" element={<Deliveries />} />
+        <Route path="deliveries/*" element={<Deliveries />} />
       </Routes>
     </BrowserRouter>
   );
