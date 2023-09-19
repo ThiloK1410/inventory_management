@@ -5,7 +5,7 @@ from django.db import models
 
 class Transaction(models.Model):
     cash_amount = models.DecimalField(max_digits=6, decimal_places=2)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=200)
 
     def __str__(self):
@@ -17,9 +17,12 @@ class Brand(models.Model):
     bottle_size = models.FloatField()
     bottles_per_crate = models.PositiveSmallIntegerField()
 
+    class Meta:
+        unique_together = ("name", "bottle_size")
+
 
 class Delivery(models.Model):
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     # The Transaction can't be deleted if it is referenced here.
     cost = models.ForeignKey(Transaction, on_delete=models.PROTECT)
 
@@ -31,5 +34,11 @@ class BrandDelivery(models.Model):
     # A brand can't be deleted if it is referenced here.
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT)
     # When a delivery is deleted all related records of BrandDelivery are deleted as well.
-    delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name="brand_deliveries")
+    delivery = models.ForeignKey(
+        Delivery, on_delete=models.CASCADE, related_name="brand_deliveries"
+    )
     crate_amount = models.IntegerField()
+
+    class Meta:
+        # This prevents multiple BrandDeliveries for the same Brand in a Delivery.
+        unique_together = ("brand", "delivery")
