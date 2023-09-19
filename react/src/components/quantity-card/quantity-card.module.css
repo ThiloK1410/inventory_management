@@ -1,0 +1,19 @@
+.quantityCard {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.quantity {
+  font-size: 1.5em;
+  align-self: flex-end;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.text>span:last-child {
+  font-size: 0.75rem;
+}
