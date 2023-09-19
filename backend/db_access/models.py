@@ -17,6 +17,9 @@ class Brand(models.Model):
     bottle_size = models.FloatField()
     bottles_per_crate = models.PositiveSmallIntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Delivery(models.Model):
     date = models.DateField(auto_now_add=True)
@@ -35,6 +38,8 @@ class BrandDelivery(models.Model):
     crate_amount = models.IntegerField()
 
 class Inventory(models.Model):
-    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, unique=True)
+    brand = models.OneToOneField(Brand, on_delete=models.PROTECT)
     bottle_amount = models.PositiveIntegerField(verbose_name="amount of bottles")
 
+    def __str__(self):
+        return "inventory"

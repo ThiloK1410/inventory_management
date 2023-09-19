@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BrandDelivery, Delivery, Brand, Transaction
+from .models import BrandDelivery, Delivery, Brand, Inventory, Transaction
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,4 +36,9 @@ class DeliverySerializer(serializers.ModelSerializer):
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
+        fields = "__all__"
+
+class InventorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inventory
         fields = "__all__"

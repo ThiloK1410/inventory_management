@@ -7,5 +7,7 @@ urlpatterns = [
     path("transaction/", views.getTransactions),
     path('delivery/create/', views.createDelivery),
     path("brand/create/", views.createBrand),
-    path("transaction/create/", views.createTransaction)
+    path("transaction/create/", views.createTransaction),
+    path("inventory/", views.inventory),
+    path("inventory/<int:id>", views.inventory)
 ]
