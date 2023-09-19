@@ -13,9 +13,12 @@ class Transaction(models.Model):
 
 
 class Brand(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200)
     bottle_size = models.FloatField()
     bottles_per_crate = models.PositiveSmallIntegerField()
+
+    class Meta:
+        unique_together = ("name", "bottle_size")
 
 
 class Delivery(models.Model):
