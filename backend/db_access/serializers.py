@@ -1,6 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
-from .models import Brand, BrandDelivery, Delivery, Inventory, Transaction
+from .models import Brand, BrandDelivery, Delivery, InventoryItem, Transaction
 
 
 class TransactionSerializer(serializers.ModelSerializer):
@@ -70,6 +70,6 @@ class BrandSerializer(serializers.ModelSerializer):
 
 class InventorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Inventory
+        model = InventoryItem
         fields = "__all__"
             

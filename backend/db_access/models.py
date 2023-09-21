@@ -46,9 +46,9 @@ class BrandDelivery(models.Model):
         # This prevents multiple BrandDeliveries for the same Brand in a Delivery.
         unique_together = ("brand", "delivery")
 
-class Inventory(models.Model):
+class InventoryItem(models.Model):
     brand = models.OneToOneField(Brand, on_delete=models.PROTECT)
     bottle_amount = models.PositiveIntegerField(verbose_name="amount of bottles")
 
     def __str__(self):
-        return "inventory"
+        return self.brand.name

@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Delivery, Brand, Transaction, BrandDelivery, Inventory
+from .models import Delivery, Brand, Transaction, BrandDelivery, InventoryItem
 from .serializers import BrandSerializer, DeliverySerializer, TransactionSerializer, InventorySerializer
 from django.http import HttpResponse
 from rest_framework import status
@@ -123,7 +123,7 @@ def inventoryAccess(request, id=None):
     # access on whole model
     if id is None:
         if request.method == "GET":
-            items = Inventory.objects.all()
+            items = InventoryItem.objects.all()
             serializer = InventorySerializer(items, many=True)
             return Response(serializer.data)
 
@@ -142,8 +142,8 @@ def inventoryAccess(request, id=None):
         # check if valid id is given
         if not (isinstance(id, int) and id >= 0): return Response(data="the id needs to be a positive integer", status=status.HTTP_400_BAD_REQUEST)
         try:
-            item = Inventory.objects.get(pk=id)
-        except Inventory.DoesNotExist:
+            item = InventoryItem.objects.get(pk=id)
+        except InventoryItem.DoesNotExist:
             return Response(data="given id is not in Inventory", status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
