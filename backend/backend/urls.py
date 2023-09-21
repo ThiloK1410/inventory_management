@@ -15,12 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.shortcuts import redirect
-from django.urls import include, path
+from django.contrib.staticfiles.views import serve
+from django.urls import include, path, re_path
 
 urlpatterns = [
-    path('', lambda request: redirect("static/index.html", permanent=True)),
-    path('api/', include('db_access.urls')),
-    path('admin/', admin.site.urls),
-    path('test/', include('test_app.urls'))
+    path("api/", include("db_access.urls")),
+    path("admin/", admin.site.urls),
+    path("test/", include("test_app.urls")),
+    # We could use a simpler regex like r".*" but then /api/deliveri/ would show
+    # the index_view instead of the Django 404 page which is probably more fitting.
+    re_path(r"^(?!api|admin|test).*", lambda request: serve(request, "index.html")),
 ]
