@@ -22,5 +22,4 @@ urlpatterns = [
     path('', lambda request: redirect("static/index.html", permanent=True)),
     path('api/', include('db_access.urls')),
     path('admin/', admin.site.urls),
-    path('test/', include('test_app.urls'))
 ]
