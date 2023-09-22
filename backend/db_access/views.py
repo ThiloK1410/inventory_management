@@ -9,62 +9,6 @@ from rest_framework import status
 
 # Setter functions to create entries in db_access
 
-
-@api_view(["POST"])
-def createDelivery(request):
-    serializer = DeliverySerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    return Response(serializer.data)
-
-
-@api_view(["POST"])
-def createBrand(request):
-    serializer = BrandSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    return Response(serializer.data)
-
-
-@api_view(["POST"])
-def createTransaction(request):
-    serializer = TransactionSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    return Response(serializer.data)
-
-
-# Getter functions
-
-
-@api_view(["GET"])
-def getDeliveries(request):
-    # Return the newest deliveries first
-    items = Delivery.objects.order_by("-date")
-    serializer = DeliverySerializer(items, many=True)
-    return Response(serializer.data)
-
-
-@api_view(["GET"])
-def getBrands(request):
-    items = Brand.objects.all()
-    serializer = BrandSerializer(items, many=True)
-    return Response(serializer.data)
-
-
-@api_view(["GET"])
-def getTransactions(request):
-    items = Transaction.objects.all()
-    serializer = TransactionSerializer(items, many=True)
-    return Response(serializer.data)
-
-# all in one rest implementation for better overview
 @api_view(["POST", "GET"])
 def transactionAccess(request):
 
