@@ -50,7 +50,7 @@ export const DeliveryEditor: React.FunctionComponent = () => {
   const onCreate = () => {
     setCreating(true);
     axios
-      .post(API_URL + "/delivery/create/", delivery)
+      .post(API_URL + "/delivery/", delivery)
       .then(() => navigate("/deliveries"))
       .catch((error: AxiosError) => {
         if (error.response) setInvalidFields(error.response.data as InvalidFields<Delivery>);
