@@ -105,3 +105,6 @@ def inventoryAccess(request, id=None):
     elif request.method == "DELETE":
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    else: return Response(data="this request method is not allowed when accessing a single model item", status=status.HTTP_400_BAD_REQUEST)
+        
