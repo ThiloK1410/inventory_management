@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Deliveries } from "./deliveries/deliveries";
 import { Inventory } from "./inventory/inventory";
 import NavBar from "./nav-bar/nav-bar";
+import { NotFound } from "./not-found/not-found";
 import { Statistics } from "./statistics/statistics";
 
 const navBarItems = [
@@ -15,6 +16,7 @@ export const App: React.FunctionComponent = () => {
     <BrowserRouter>
       <NavBar items={navBarItems} />
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Inventory />} />
         <Route path="statistics" element={<Statistics />} />
         <Route path="deliveries/*" element={<Deliveries />} />

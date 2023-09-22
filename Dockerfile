@@ -4,7 +4,6 @@ FROM node:18-alpine
 
 COPY react /home/react
 WORKDIR /home/react
-ENV BASE_URL /static/
 RUN npm i
 RUN npm run build
 
