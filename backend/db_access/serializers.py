@@ -1,6 +1,6 @@
-from rest_framework import serializers
-from .models import BrandDelivery, Delivery, Brand, Transaction
 from django.db import transaction
+from rest_framework import serializers
+from .models import Brand, BrandDelivery, Delivery, InventoryItem, Transaction
 
 
 class TransactionSerializer(serializers.ModelSerializer):
@@ -61,5 +61,15 @@ class DeliverySerializer(serializers.ModelSerializer):
                 BrandDelivery.objects.create(
                     delivery=delivery, brand=brand, **brand_delivery
                 )
-
             return delivery
+
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = "__all__"
+
+class InventorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InventoryItem
+        fields = "__all__"
+            

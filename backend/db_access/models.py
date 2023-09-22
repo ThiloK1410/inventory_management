@@ -20,6 +20,9 @@ class Brand(models.Model):
     class Meta:
         unique_together = ("name", "bottle_size")
 
+    def __str__(self):
+        return self.name
+
 
 class Delivery(models.Model):
     date = models.DateTimeField(auto_now_add=True)
@@ -42,3 +45,10 @@ class BrandDelivery(models.Model):
     class Meta:
         # This prevents multiple BrandDeliveries for the same Brand in a Delivery.
         unique_together = ("brand", "delivery")
+
+class InventoryItem(models.Model):
+    brand = models.OneToOneField(Brand, on_delete=models.PROTECT)
+    bottle_amount = models.PositiveIntegerField(verbose_name="amount of bottles")
+
+    def __str__(self):
+        return self.brand.name
