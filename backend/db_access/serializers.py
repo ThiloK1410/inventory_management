@@ -17,7 +17,10 @@ class BrandSerializer(serializers.ModelSerializer):
 
 # BrandSerializer without uniqueness check of the name
 class SimplifiedBrandSerializer(BrandSerializer):
-    name = serializers.CharField(max_length=200, validators=[])
+    name = serializers.CharField(max_length=200)
+
+    class Meta(BrandSerializer.Meta):
+        validators = []
 
 
 class BrandDeliverySerializer(serializers.ModelSerializer):
@@ -58,18 +61,34 @@ class DeliverySerializer(serializers.ModelSerializer):
             # Create BrandDelivery for every item in the brand_deliveries_list
             for brand_delivery in brand_deliveries_list:
                 brand, _ = Brand.objects.get_or_create(**brand_delivery.pop("brand"))
-                BrandDelivery.objects.create(
+                brand_delivery = BrandDelivery.objects.create(
                     delivery=delivery, brand=brand, **brand_delivery
                 )
+
+                bottle_amount = brand.bottles_per_crate * brand_delivery.crate_amount
+                inventory_item, created = InventoryItem.objects.get_or_create(
+                    brand=brand,
+                    defaults={"bottle_amount": bottle_amount},
+                )
+
+                if created:
+                    continue
+                
+                inventory_item.bottle_amount += bottle_amount
+                inventory_item.save()
+
             return delivery
+
 
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = "__all__"
 
+
 class InventorySerializer(serializers.ModelSerializer):
+    brand = BrandSerializer()
+    
     class Meta:
         model = InventoryItem
         fields = "__all__"
-            
