@@ -18,7 +18,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #FFF;
+  background-color: #FFF;
   width: min(90vw, 500px);
   z-index: 1;
   display: flex;
