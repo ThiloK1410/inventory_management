@@ -1,12 +1,10 @@
 import axios from "axios";
+import { Button } from "primereact/button";
 import React, { useEffect, useState } from "react";
-import { QuantityCard } from "../../components/quantity-card/quantity-card";
+import { ItemCard } from "../../components/item-card/item-card";
 import { API_URL } from "../../constants";
 import { InventoryItem } from "../../types/inventory-item";
 import Styles from "./inventory.module.css";
-import { Button } from "primereact/button";
-import { ItemCard } from "../../components/item-card/item-card";
-import { QuantityInput } from "../../components/change-value-button/quantity-input";
 
 export const Inventory: React.FunctionComponent = () => {
   const [items, setItems] = useState<InventoryItem[]>([]);
