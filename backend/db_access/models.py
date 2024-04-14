@@ -47,9 +47,9 @@ class BrandDelivery(models.Model):
         unique_together = ("brand", "delivery")
 
 class InventoryItem(models.Model):
-    brand_name = models.CharField(max_length=200, null=True)
+    brand_name = models.CharField(max_length=200)
     bottle_size = models.FloatField(null=True)
-    bottles_per_crate = models.PositiveSmallIntegerField(null=True) # can be None
+    crate_size = models.PositiveSmallIntegerField(null=True) # can be None
     bottle_amount = models.PositiveIntegerField(verbose_name="amount of bottles")
 
     def __str__(self):
