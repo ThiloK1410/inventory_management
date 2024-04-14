@@ -1,9 +1,24 @@
+:root {
+  --labaix-blue: #00414B;
+  --labaix-orange: #EFAB04;
+  --grey-95: #f2f2f2;
+  --grey-85: #d9d9d9;
+  --grey-60: #999999;
+  --grey-40: #666666;
+  --pastel-green: #79EC79;
+  --pastel-red: #EC7979;
+  --default-background: white;
+  --default-text-color: black;
+
+  --nav-font-size: 1.5rem;
+}
+
 body {
   margin: 0;
-  background-color: white;
+  background-color: var(--default-background);
   font-family: Montserrat;
   font-weight: 700;
-  color: black;
+  color: var(--default-text-color);
 }
 
 @font-face {
@@ -16,4 +31,9 @@ body {
   border-radius: 1rem;
   background-color: #FFF;
   padding: 1rem;
+}
+
+.active {
+  background-color: white;
+  font-weight: 600;
 }
