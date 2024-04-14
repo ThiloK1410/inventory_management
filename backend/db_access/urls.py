@@ -1,10 +1,8 @@
 from django.urls import path
 from . import views
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    path("delivery/", views.deliveryAccess),
-    path("brand/", views.brandAccess),
-    path("transaction/", views.transactionAccess),
-    path("inventory/", views.InventoryItemViewSet.as_view()),
-    path("inventory/<int:id>", views.InventoryItemViewSet.as_view())
-]
+router = DefaultRouter()
+router.register("inventoryItem", views.InventoryItemViewSet)
+
+urlpatterns = router.urls
