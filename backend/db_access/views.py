@@ -118,7 +118,14 @@ class InventoryItemViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def put(self, request):
-        pass
+        serializer = InventorySerializer(item, data=request.data)
+        if serializer.is_valid():
+                serializer.save()
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data)
 
     def get(self, request):
-        pass
+        items = InventoryItem.objects.all()
+        serializer = InventorySerializer(items, many=True)
+        return Response(serializer.data)
