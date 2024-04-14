@@ -6,5 +6,5 @@ urlpatterns = [
     path("brand/", views.brandAccess),
     path("transaction/", views.transactionAccess),
     path("inventory/", views.InventoryItemViewSet),
-    path("inventory/<int:id>", views.inventoryAccess)
+    path("inventory/<int:id>", views.InventoryItemViewSet)
 ]
