@@ -26,13 +26,6 @@ body {
   src: url("./fonts/Montserrat-Regular.ttf");
 }
 
-.item-card {
-  border: 0.2rem solid #114466D9;
-  border-radius: 1rem;
-  background-color: #FFF;
-  padding: 1rem;
-}
-
 .active {
   background-color: white;
   font-weight: 600;

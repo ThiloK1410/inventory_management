@@ -1,0 +1,35 @@
+.itemCardCollapsed {
+  border: none;
+  border-radius: 2rem;
+  background-color: var(--grey-95);
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.2rem;
+}
+
+.itemCardExpanded {
+  border: none;
+  border-radius: 2rem;
+  height: 12rem;
+  background-color: var(--grey-95);
+}
+
+.label {
+  align-self: center;
+}
+
+.quantity {
+  justify-self: right;
+  font-size: 1.5rem;
+  align-self: center;
+}
+
+.brand {
+  font-size: 1.5rem;
+}
+
+.details {
+  margin-left: 0.4rem;
+  color: var(--grey-40)
+}
