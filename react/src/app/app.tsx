@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Deliveries } from "./deliveries/deliveries";
 import { Inventory } from "./inventory/inventory";
-import NavBar from "./nav-bar/nav-bar";
+import NavDropdown from "./nav-dropdown/nav-dropdown";
 import { NotFound } from "./not-found/not-found";
 import { Statistics } from "./statistics/statistics";
-import { Dropdown } from "primereact/dropdown";
 
 const navBarItems = [
   { to: "/", title: "Inventory" },
@@ -12,13 +11,10 @@ const navBarItems = [
   { to: "/deliveries", title: "Deliveries" },
 ];
 
-let selectedNavBarItem = undefined;
-
 export const App: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
-      {/* <NavBar items={navBarItems} /> */}
-      <h1>Inventory</h1>
+      <NavDropdown items={navBarItems} />
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Inventory />} />
