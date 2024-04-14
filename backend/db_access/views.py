@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Delivery, Brand, Transaction, BrandDelivery, InventoryItem
-from .serializers import BrandSerializer, DeliverySerializer, TransactionSerializer
+from .serializers import BrandSerializer, DeliverySerializer, TransactionSerializer, InventoryItemSerializer
 from django.http import HttpResponse
 from rest_framework import status, viewsets
 
