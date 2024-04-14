@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { QuantityInput } from "../change-value-button/quantity-input";
 import Styles from "./item-card.module.css";
 
