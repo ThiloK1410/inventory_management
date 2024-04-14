@@ -3,11 +3,13 @@ import { Button } from "primereact/button";
 import React, { useEffect, useState } from "react";
 import { ItemCard } from "../../components/item-card/item-card";
 import { API_URL } from "../../constants";
-import { InventoryItem } from "../../types/inventory-item";
+import { InventoryItem } from "../../types/item";
 import Styles from "./inventory.module.css";
 
 export const Inventory: React.FunctionComponent = () => {
   const [items, setItems] = useState<InventoryItem[]>([]);
+
+  const [focusedItemId, setFocusedItemId] = useState<number | undefined>();
 
   const [dirty, setDirty] = useState<boolean>(false);
 
@@ -32,10 +34,12 @@ export const Inventory: React.FunctionComponent = () => {
       {items.map(item => (
         <ItemCard
           key={item.id}
-          brandName={item.brand.name}
-          bottleSize={item.brand.bottle_size}
+          brandName={item.brand_name}
+          bottleSize={item.bottle_size}
           quantity={item.bottle_amount}
-          crateSize={item.brand.bottles_per_crate}
+          crateSize={item.crate_size}
+          setInFocus={() => setFocusedItemId(item.id)}
+          inFocus = {focusedItemId==item.id}
           setQuantity={quantity =>
             setItems(current =>
               current.map(item1 => {
@@ -52,7 +56,7 @@ export const Inventory: React.FunctionComponent = () => {
       ))}
       {dirty && (
         <Button onClick={saveItems} icon="fas fa-check">
-          Save Changes
+          Save
         </Button>
       )}
     </div>
