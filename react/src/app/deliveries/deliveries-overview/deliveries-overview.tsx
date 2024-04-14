@@ -21,12 +21,14 @@ export const DeliveriesOverview: React.FunctionComponent = () => {
     const brandNames = delivery.brand_deliveries.map(brandDelivery => brandDelivery.brand.name);
 
     return (
-      <QuantityCard
-        key={delivery.id}
-        text={dateFormatter.format(new Date(delivery.date))}
-        detailText={brandNameFormatter.format(brandNames)}
-        quantity={`${delivery.cost.cash_amount}€`}
-      />
+      <Link to={String(delivery.id)} className={Styles.delivery}>
+        <QuantityCard
+          key={delivery.id}
+          text={dateFormatter.format(new Date(delivery.date))}
+          detailText={brandNameFormatter.format(brandNames)}
+          quantity={`${delivery.cost.cash_amount}€`}
+        />
+      </Link>
     );
   };
 

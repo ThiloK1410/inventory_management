@@ -13,3 +13,8 @@
 .link>button {
   flex-grow: 1;
 }
+
+.delivery {
+  text-decoration: none;
+  color: inherit;
+}
