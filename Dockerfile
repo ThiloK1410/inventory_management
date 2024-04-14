@@ -11,11 +11,20 @@ RUN npm run build
 FROM python:3.11-alpine
 
 # Install Django backend
-COPY backend /home/inventory_management/backend
 WORKDIR /home/inventory_management/backend
+# First only copy the requirements because they rarely change.
+COPY backend/requirements.txt .
 RUN pip install -r requirements.txt
-ENV DJANGO_DEBUG False
+COPY backend .
+ENV PRODUCTION True
 RUN python manage.py migrate
+
+# Create admin account with password admin
+ENV DJANGO_SUPERUSER_PASSWORD admin
+RUN python manage.py createsuperuser \
+        --noinput \
+        --username admin \
+        --email kek@kek.de
 
 # Move all static files to /home/inventory_management/static
 COPY --from=0 /home/react/dist /home/inventory_management/react/dist
