@@ -1,9 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Delivery, Brand, Transaction, BrandDelivery, InventoryItem
-from .serializers import BrandSerializer, DeliverySerializer, TransactionSerializer, InventorySerializer
+from .serializers import BrandSerializer, DeliverySerializer, TransactionSerializer
 from django.http import HttpResponse
-from rest_framework import status
+from rest_framework import status, viewsets
 
 # Create your views here.
 
@@ -108,3 +108,17 @@ def inventoryAccess(request, id=None):
 
     else: return Response(data="this request method is not allowed when accessing a single model item", status=status.HTTP_400_BAD_REQUEST)
         
+class InventoryItemViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = InventoryItemSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data)
+
+    def put(self, request):
+        pass
+
+    def get(self, request):
+        pass
