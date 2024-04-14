@@ -69,7 +69,7 @@ export const DeliveryEditor: React.FunctionComponent = () => {
         <QuantityCard
           text={brandDelivery.brand.name}
           detailText={`${brandDelivery.brand.bottle_size}L x ${brandDelivery.brand.bottles_per_crate}`}
-          quantity={String(brandDelivery.crate_amount)}
+          quantity={brandDelivery.crate_amount}
         />
         <Button
           onClick={() => deleteDelivery(index)}
