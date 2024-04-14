@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
+
+DEV_SERVER = len(sys.argv) > 1 and sys.argv[1] == "runserver"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,12 +29,10 @@ SECRET_KEY = os.environ.get(
     "django-insecure-_xv9&)k0h-f8!6(ydfn@o#niud@bl20oyh5_g&%co@jkt-ub06",
 )
 
-PRODUCTION = os.environ.get("PRODUCTION", "") != "False"
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CORS_ORIGIN_ALLOW_ALL = PRODUCTION
+CORS_ORIGIN_ALLOW_ALL = DEV_SERVER
 
 # This setting is only used when DEBUG = False
 ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]"]
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
     "rest_framework",
     "test_app",
     "db_access",
@@ -123,17 +123,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_ROOT = BASE_DIR.parent / "static"
-
-STATICFILES_URL = "static/"
-STATIC_URL = STATICFILES_URL
-
-STATICFILES_DIRS = [BASE_DIR.parent / "react/dist"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
