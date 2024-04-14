@@ -60,53 +60,6 @@ def brandAccess(request):
         serializer = BrandSerializer(items, many=True)
         return Response(serializer.data)
 
-
-@api_view(["GET", "PUT", "POST", "DELETE"])
-def inventoryAccess(request, id=None):
-
-    # access on whole model
-    if id is None:
-        if request.method == "GET":
-            items = InventoryItem.objects.all()
-            serializer = InventorySerializer(items, many=True)
-            return Response(serializer.data)
-
-        elif request.method == "POST":
-            serializer = InventorySerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            return Response(serializer.data)
-
-        else: return Response(data="this request method is not allowed when accessing whole model", status=status.HTTP_400_BAD_REQUEST)
-        
-    # access on one element of model    
-    else:
-        # check if valid id is given
-        if not (isinstance(id, int) and id >= 0): return Response(data="the id needs to be a positive integer", status=status.HTTP_400_BAD_REQUEST)
-        try:
-            item = InventoryItem.objects.get(pk=id)
-        except InventoryItem.DoesNotExist:
-            return Response(data="given id is not in Inventory", status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == "GET":
-        serializer = InventorySerializer(item)
-        return Response(serializer.data)
-
-    elif request.method == "PUT":
-        serializer = InventorySerializer(item, data=request.data)
-        if serializer.is_valid():
-                serializer.save()
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.data)
-
-    elif request.method == "DELETE":
-        item.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    else: return Response(data="this request method is not allowed when accessing a single model item", status=status.HTTP_400_BAD_REQUEST)
         
 class InventoryItemViewSet(viewsets.ViewSet):
     def create(self, request):
