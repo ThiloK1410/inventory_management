@@ -5,7 +5,6 @@ from .serializers import BrandSerializer, DeliverySerializer, TransactionSeriali
 from django.http import HttpResponse
 from rest_framework import status, viewsets
 
-# Create your views here.
 
 # Setter functions to create entries in db_access
 

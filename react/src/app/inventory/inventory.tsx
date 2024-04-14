@@ -23,21 +23,21 @@ export const Inventory: React.FunctionComponent = () => {
 
   return (
     <div className={Styles.items}>
-      <ItemCard 
+      {/* <ItemCard 
         key="0"
         brandName="Coca Cola"
         bottleSize={0.33}
         crateSize={24}
         quantity={24}
         setQuantity={quantity => quantity}
-         />
+         /> */}
       {items.map(item => (
-        <QuantityCard
+        <ItemCard
           key={item.id}
-          text={item.brand.name}
-          detailText={`${item.brand.bottle_size}L`}
+          brandName={item.brand.name}
+          bottleSize={item.brand.bottle_size}
           quantity={item.bottle_amount}
-          unit="bottles"
+          crateSize={item.brand.bottles_per_crate}
           setQuantity={quantity =>
             setItems(current =>
               current.map(item1 => {
