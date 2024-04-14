@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Delivery, Brand, Transaction, BrandDelivery, InventoryItem
-from .serializers import BrandSerializer, DeliverySerializer, TransactionSerializer
+from .serializers import BrandSerializer, DeliverySerializer, TransactionSerializer, InventoryItemSerializer
 from django.http import HttpResponse
 from rest_framework import status, viewsets
 
@@ -70,7 +70,7 @@ class InventoryItemViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def put(self, request):
-        serializer = InventorySerializer(item, data=request.data)
+        serializer = InventoryItemSerializer(item, data=request.data)
         if serializer.is_valid():
                 serializer.save()
         else:
@@ -79,5 +79,5 @@ class InventoryItemViewSet(viewsets.ViewSet):
 
     def get(self, request):
         items = InventoryItem.objects.all()
-        serializer = InventorySerializer(items, many=True)
+        serializer = InventoryItemSerializer(items, many=True)
         return Response(serializer.data)
