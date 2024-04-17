@@ -25,7 +25,8 @@ export const DeliveriesOverview: React.FunctionComponent = () => {
         key={delivery.id}
         text={dateFormatter.format(new Date(delivery.date))}
         detailText={brandNameFormatter.format(brandNames)}
-        quantity={`${delivery.cost.cash_amount}€`}
+        quantity={delivery.cost.cash_amount}
+        unit="€"
       />
     );
   };
