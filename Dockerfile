@@ -27,7 +27,10 @@ RUN python manage.py createsuperuser \
         --email kek@kek.de
 
 # Move all static files to /home/inventory_management/static
-COPY --from=0 /home/react/dist /home/inventory_management/static
+COPY --from=0 /home/react/dist /home/inventory_management/react/dist
+RUN rm -rf /home/inventory_management/static
+RUN python manage.py collectstatic
+RUN rm -rf /home/inventory_management/react
 
 EXPOSE 8000
 ENTRYPOINT ["gunicorn", "backend.wsgi", "--bind", "0.0.0.0:8000"]
