@@ -70,7 +70,7 @@ class InventoryItemViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def put(self, request):
-        serializer = InventoryItemSerializer(item, data=request.data)
+        serializer = InventoryItemSerializer(data=request.data)
         if serializer.is_valid():
                 serializer.save()
         else:

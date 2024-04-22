@@ -1,5 +1,5 @@
 import React from "react";
-import { QuantityInput } from "../change-value-button/quantity-input";
+import { QuantityInput } from "../../../components/change-value-button/quantity-input";
 import Styles from "./item-card.module.css";
 
 type ItemCardProps = {
@@ -25,7 +25,9 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
           <span className={Styles.brand}>{props.brandName}</span>
           <span className={Styles.details}>{details}</span>
         </div>
-        {props.inFocus && <QuantityInput quantity={props.quantity} setQuantity={props.setQuantity} />}
+        {props.inFocus && (
+          <QuantityInput quantity={props.quantity} setQuantity={props.setQuantity} />
+        )}
         <div className={Styles.quantity}>{props.quantity}</div>
       </div>
     </>

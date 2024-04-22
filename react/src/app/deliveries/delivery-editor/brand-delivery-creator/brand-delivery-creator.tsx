@@ -4,8 +4,8 @@ import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../../../constants";
-import { Brand } from "../../../../types/brand";
 import { BrandDelivery } from "../../../../types/brand-delivery";
+import { InventoryItem } from "../../../../types/inventory-item";
 import { MissingId } from "../../../../types/missing-id";
 import Styles from "./brand-delivery-creator.module.css";
 
@@ -15,11 +15,11 @@ type BrandDeliveryCreatorProps = {
 
 export const BrandDeliveryCreator: React.FunctionComponent<BrandDeliveryCreatorProps> = props => {
   const [showModal, setShowModal] = useState(false);
-  const [brands, setBrands] = useState<Brand[]>([]);
+  const [inventoryItems, setInventoryItems] = useState<InventoryItem[]>([]);
   const [brandDelivery, setBrandDelivery] = useState<Partial<BrandDelivery>>({});
 
   useEffect(() => {
-    axios.get(API_URL + "/brand/").then(response => setBrands(response.data));
+    axios.get(API_URL + "/brand/").then(response => setInventoryItems(response.data));
   }, []);
 
   const onCrateAmountChange = (e: InputNumberChangeEvent) => {
@@ -51,7 +51,7 @@ export const BrandDeliveryCreator: React.FunctionComponent<BrandDeliveryCreatorP
             <Dropdown
               className={Styles.dropdown}
               placeholder="Select brand"
-              options={brands}
+              options={inventoryItems}
               optionLabel="name"
               onChange={onBrandSelect}
               value={brandDelivery.brand}
