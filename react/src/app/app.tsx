@@ -5,6 +5,8 @@ import NavDropdown from "./nav-dropdown/nav-dropdown";
 import { NotFound } from "./not-found/not-found";
 import { Statistics } from "./statistics/statistics";
 
+import Styles from "./app.module.css";
+
 const navBarItems = [
   { to: "/", title: "Inventory" },
   { to: "/statistics", title: "Statistics" },
@@ -13,6 +15,7 @@ const navBarItems = [
 
 export const App: React.FunctionComponent = () => {
   return (
+    <div className={Styles.main}>
     <BrowserRouter>
       <NavDropdown items={navBarItems} />
       <Routes>
@@ -22,5 +25,6 @@ export const App: React.FunctionComponent = () => {
         <Route path="deliveries/*" element={<Deliveries />} />
       </Routes>
     </BrowserRouter>
+    </div>
   );
 };

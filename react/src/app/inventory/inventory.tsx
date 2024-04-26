@@ -40,9 +40,6 @@ export const Inventory: React.FunctionComponent = () => {
   return (
     <>
       <div className={Styles.items}>
-        {focusedItemId === "new" && (
-          <NewItemCard onClose={() => setFocusedItemId(undefined)} onCreateItem={onCreateItem} />
-        )}
         {items.map(item => (
           <ItemCard
             key={item.id}
@@ -56,7 +53,7 @@ export const Inventory: React.FunctionComponent = () => {
               setItems(current =>
                 current.map(item1 => {
                   setDirty(true);
-                  if (item1.id !== item.id) return item1;
+                  if(item1.id !== item.id) return item1;
                   return {
                     ...item1,
                     bottle_amount: quantity,
@@ -66,14 +63,14 @@ export const Inventory: React.FunctionComponent = () => {
             }
           />
         ))}
-        {dirty && (
-          <Button onClick={saveItems} icon="fas fa-check">
-            Save
-          </Button>
-        )}
+        <NewItemCard onCreateItem={onCreateItem} />
       </div>
       {focusedItemId && <div className={Styles.unfocus} onClick={onUnfocusClick} />}
-      <Button className={Styles.createButton} icon="fas fa-plus" rounded onClick={showNewItem} />
+      {dirty && (
+        <Button className={Styles.saveButton} onClick={saveItems}>
+          Save
+        </Button>
+      )}
     </>
   );
 };

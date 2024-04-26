@@ -11,3 +11,17 @@
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
+
+.newButton {
+  width: 100% !important;
+  border-radius: 2rem;
+  border-color: var(--grey-85) !important;
+  border-width: 0.25rem !important;
+  color: var(--grey-85) !important;
+  font-size: 2rem;
+}
+
+.newButton:hover {
+  border-color: var(--labaix-blue) !important;
+  color: var(--labaix-blue) !important;
+}

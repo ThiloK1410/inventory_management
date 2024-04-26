@@ -30,3 +30,9 @@ body {
   background-color: white;
   font-weight: 600;
 }
+
+.p-button {
+  border-radius: 2rem;
+  background-color: var(--labaix-blue);
+  border-width: 0;
+}
