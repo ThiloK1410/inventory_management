@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Button } from "primereact/button";
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../constants";
@@ -10,22 +10,21 @@ import { NewItemCard } from "./new-item-card/new-item-card";
 export const Inventory: React.FunctionComponent = () => {
   const [items, setItems] = useState<InventoryItem[]>([]);
   const [focusedItemId, setFocusedItemId] = useState<number | undefined | "new">();
-  const [dirty, setDirty] = useState<boolean>(false);
 
   useEffect(() => {
     fetchItems();
   }, []);
 
   const fetchItems = () => {
-    axios.get(API_URL + "/inventory/").then(response => setItems(response.data));
+    axios
+      .get(API_URL + "/inventory/")
+      .then((response: AxiosResponse<InventoryItem[]>) =>
+        setItems(response.data.map(item => ({ ...item, previousAmount: item.bottle_amount }))),
+      );
   };
 
   const saveItems = () => {
     axios.post(API_URL + "/inventory/", items);
-  };
-
-  const showNewItem = () => {
-    setFocusedItemId("new");
   };
 
   const onUnfocusClick = () => {
@@ -36,6 +35,8 @@ export const Inventory: React.FunctionComponent = () => {
     fetchItems();
     setFocusedItemId(undefined);
   };
+
+  const dirty = items.find(item => item.bottle_amount !== item.previousAmount) !== undefined;
 
   return (
     <>
@@ -52,8 +53,7 @@ export const Inventory: React.FunctionComponent = () => {
             setQuantity={quantity =>
               setItems(current =>
                 current.map(item1 => {
-                  setDirty(true);
-                  if(item1.id !== item.id) return item1;
+                  if (item1.id !== item.id) return item1;
                   return {
                     ...item1,
                     bottle_amount: quantity,

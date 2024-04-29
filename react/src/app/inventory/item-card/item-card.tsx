@@ -19,16 +19,20 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
     <>
       <div
         onClick={props.setInFocus}
-        className={props.inFocus ? Styles.itemCardExpanded : Styles.itemCardCollapsed}
+        className={[Styles.itemCard, props.inFocus ? Styles.expanded : ""].join(" ")}
       >
-        <div className={Styles.label}>
-          <span className={Styles.brand}>{props.brandName}</span>
-          <span className={Styles.details}>{details}</span>
+        <div className={Styles.header}>
+          <div className={Styles.label}>
+            <span className={Styles.brand}>{props.brandName}</span>
+            <span className={Styles.details}>{details}</span>
+          </div>
+          <div className={Styles.quantity}>{props.quantity}</div>
         </div>
         {props.inFocus && (
-          <QuantityInput quantity={props.quantity} setQuantity={props.setQuantity} />
+          <div>
+            <QuantityInput quantity={props.quantity} setQuantity={props.setQuantity} />
+          </div>
         )}
-        <div className={Styles.quantity}>{props.quantity}</div>
       </div>
     </>
   );

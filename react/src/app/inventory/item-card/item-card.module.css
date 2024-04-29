@@ -1,19 +1,15 @@
-.itemCardCollapsed {
+.itemCard {
   border: none;
   border-radius: 2rem;
   background-color: var(--grey-95);
-  height: 4rem;
   display: flex;
-  justify-content: space-between;
-  padding: 0 1.2rem;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.125rem 1.2rem;
   z-index: 1;
 }
 
-.itemCardExpanded {
-  border: none;
-  border-radius: 2rem;
-  height: 12rem;
-  background-color: var(--grey-95);
+.expanded {
   z-index: 2;
 }
 
@@ -34,4 +30,10 @@
 .details {
   margin-left: 0.4rem;
   color: var(--grey-40)
+}
+
+.header {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
 }
