@@ -4,7 +4,6 @@
   background-color: var(--grey-95);
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   padding: 1.125rem 1.2rem;
   z-index: 1;
 }
@@ -33,7 +32,6 @@
 }
 
 .header {
-  flex-grow: 1;
   display: flex;
   justify-content: space-between;
 }
