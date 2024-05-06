@@ -1,19 +1,14 @@
-.itemCardCollapsed {
+.itemCard {
   border: none;
   border-radius: 2rem;
   background-color: var(--grey-95);
-  height: 4rem;
   display: flex;
-  justify-content: space-between;
-  padding: 0 1.2rem;
+  flex-direction: column;
+  padding: 1.125rem 1.2rem;
   z-index: 1;
 }
 
-.itemCardExpanded {
-  border: none;
-  border-radius: 2rem;
-  height: 12rem;
-  background-color: var(--grey-95);
+.expanded {
   z-index: 2;
 }
 
@@ -36,11 +31,7 @@
   color: var(--grey-40)
 }
 
-.unfocus {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-  height: 100%;
+.header {
+  display: flex;
+  justify-content: space-between;
 }

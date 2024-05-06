@@ -1,7 +1,7 @@
-import { Brand } from "./brand";
+import { InventoryItem } from "./inventory-item";
 
 export type BrandDelivery = {
   id: number;
   crate_amount: number;
-  brand: Brand;
+  brand: InventoryItem;
 };

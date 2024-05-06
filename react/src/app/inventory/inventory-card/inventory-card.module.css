@@ -1,0 +1,16 @@
+.card {
+  border-radius: 2rem;
+  background-color: var(--grey-95);
+  z-index: 2;
+  padding: 1rem;
+}
+
+.buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buttons button {
+  flex-grow: 1;
+}

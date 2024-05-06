@@ -40,6 +40,7 @@
   padding: 0.5rem 0.75rem;
   width: 100% !important;
   display: block;
+  color: black;
 }
 
 .navLink:hover,
