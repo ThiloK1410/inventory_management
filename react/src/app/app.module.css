@@ -3,3 +3,24 @@
   flex-direction: column;
   height: 100vh;
 }
+
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.title {
+  margin-left: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .main {
+    width: 768px;
+    align-self: center;
+  }
+}

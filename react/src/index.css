@@ -36,3 +36,8 @@ body {
   background-color: var(--labaix-blue);
   border-width: 0;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
