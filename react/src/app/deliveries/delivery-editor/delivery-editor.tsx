@@ -65,10 +65,10 @@ export const DeliveryEditor: React.FunctionComponent = () => {
 
   const getBrandDeliveries = () => {
     return delivery.brand_deliveries.map((brandDelivery, index) => (
-      <div className={Styles.brandDeliveryWrapper} key={brandDelivery.brand.name}>
+      <div className={Styles.brandDeliveryWrapper} key={brandDelivery.brand.brand_name}>
         <QuantityCard
-          text={brandDelivery.brand.name}
-          detailText={`${brandDelivery.brand.bottle_size}L x ${brandDelivery.brand.bottles_per_crate}`}
+          text={brandDelivery.brand.brand_name}
+          detailText={`${brandDelivery.brand.bottle_size}L x ${brandDelivery.brand.crate_size}`}
           quantity={brandDelivery.crate_amount}
         />
         <Button

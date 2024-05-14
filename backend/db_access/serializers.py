@@ -86,9 +86,7 @@ class BrandSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class InventorySerializer(serializers.ModelSerializer):
-    brand = BrandSerializer()
-    
+class InventoryItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = InventoryItem
         fields = "__all__"

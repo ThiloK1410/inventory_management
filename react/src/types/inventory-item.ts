@@ -1,7 +1,8 @@
-import { Brand } from "./brand"
-
 export type InventoryItem = {
   id: number;
-  brand: Brand;
+  brand_name: string;
   bottle_amount: number;
+  bottle_size: number;
+  crate_size?: number;
+  previousAmount: number;
 }

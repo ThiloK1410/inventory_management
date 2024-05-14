@@ -18,7 +18,7 @@ export const DeliveriesOverview: React.FunctionComponent = () => {
   }, []);
 
   const getDelivery = (delivery: Delivery) => {
-    const brandNames = delivery.brand_deliveries.map(brandDelivery => brandDelivery.brand.name);
+    const brandNames = delivery.brand_deliveries.map(brandDelivery => brandDelivery.brand.brand_name);
 
     return (
       <QuantityCard
