@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Delivery, Transaction, Brand, InventoryItem, BrandDelivery
+from .models import InventoryItem
 
 # Register your models here.
 
-admin.site.register([Delivery, Transaction, Brand, BrandDelivery, InventoryItem])
+admin.site.register([InventoryItem])
