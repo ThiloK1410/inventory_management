@@ -1,5 +1,5 @@
 import React from "react";
-import { QuantityInput } from "../change-value-button/quantity-input";
+import { QuantityInput } from "../quantity-input/quantity-input";
 import Styles from "./quantity-card.module.css";
 
 type QuantityCardProps = {

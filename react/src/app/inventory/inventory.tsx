@@ -23,6 +23,12 @@ export const Inventory: React.FunctionComponent = () => {
       );
   };
 
+  const deleteItem = (toDelete: number) => {
+    axios
+      .delete(API_URL + "/inventory/" + toDelete)
+      .then(() => setItems(items => items.filter(item => item.id !== toDelete)));
+  };
+
   const saveItems = () => {
     axios.put(API_URL + "/inventory/", items);
   };
@@ -49,7 +55,7 @@ export const Inventory: React.FunctionComponent = () => {
             quantity={item.bottle_amount}
             crateSize={item.crate_size}
             setInFocus={() => setFocusedItemId(item.id)}
-            inFocus={focusedItemId == item.id}
+            expanded={focusedItemId == item.id}
             setQuantity={quantity =>
               setItems(current =>
                 current.map(item1 => {
@@ -61,6 +67,7 @@ export const Inventory: React.FunctionComponent = () => {
                 }),
               )
             }
+            onDelete={() => deleteItem(item.id)}
           />
         ))}
         <NewItemCard onCreateItem={onCreateItem} />

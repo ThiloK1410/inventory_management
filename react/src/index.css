@@ -37,6 +37,10 @@ body {
   border-width: 0;
 }
 
+.p-button-danger {
+  background-color: #D92626 !important;
+}
+
 #root {
   display: flex;
   flex-direction: column;
