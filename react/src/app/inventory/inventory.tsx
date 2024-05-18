@@ -24,7 +24,7 @@ export const Inventory: React.FunctionComponent = () => {
   };
 
   const saveItems = () => {
-    axios.post(API_URL + "/inventory/", items);
+    axios.put(API_URL + "/inventory/", items);
   };
 
   const onUnfocusClick = () => {
