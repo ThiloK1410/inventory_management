@@ -25,7 +25,7 @@ export const Inventory: React.FunctionComponent = () => {
 
   const deleteItem = (toDelete: number) => {
     axios
-      .delete(API_URL + "/inventory/" + toDelete)
+      .delete(API_URL + "/inventory/" + toDelete + "/")
       .then(() => setItems(items => items.filter(item => item.id !== toDelete)));
   };
 

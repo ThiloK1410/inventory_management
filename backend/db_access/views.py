@@ -36,8 +36,7 @@ class InventoryItemViewSet(viewsets.ViewSet):
         serializer = InventoryItemSerializer(items, many=True)
         return Response(serializer.data)
     
-    def destroy(self, pk=None):
-        items = InventoryItem.objects.filter(id__in=pk)
-        items.delete()
-        if len(items) == len(request.data):
-            return Response("element(s) deleted", status=status.HTTP_200_OK)
+    def destroy(self, request, pk=None):
+        item = InventoryItem.objects.get(id=pk)
+        item.delete()
+        return Response(f"deleted item with id {pk}")
