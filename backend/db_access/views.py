@@ -9,14 +9,9 @@ import logging
 logger = logging.getLogger(__name__)
 
         
-class InventoryItemViewSet(viewsets.ViewSet):
-    def create(self, request):
-        serializer = InventoryItemSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.data)
+class InventoryItemViewSet(viewsets.ModelViewSet):
+    queryset = InventoryItem.objects.all()
+    serializer_class = InventoryItemSerializer
 
     def put(self, request):
         request_size = len(request.data)
@@ -30,13 +25,3 @@ class InventoryItemViewSet(viewsets.ViewSet):
             else:
                 return Response(f"serialization failed with {data}" ,status=status.HTTP_400_BAD_REQUEST)
         return Response({"message": f"{successful_updates}/{request_size} entries updated successfully."}, status=status.HTTP_202_ACCEPTED)
-
-    def get(self, request):
-        items = InventoryItem.objects.all()
-        serializer = InventoryItemSerializer(items, many=True)
-        return Response(serializer.data)
-    
-    def destroy(self, request, pk=None):
-        item = InventoryItem.objects.get(id=pk)
-        item.delete()
-        return Response(f"deleted item with id {pk}")
