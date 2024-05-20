@@ -12,6 +12,7 @@ type ItemCardProps = {
   expanded: boolean;
   setInFocus: () => void;
   onDelete: () => void;
+  onCancel: () => void;
 };
 
 export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
@@ -35,7 +36,9 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
             <QuantityInput quantity={props.quantity} setQuantity={props.setQuantity} />
           </div>
           <div className={Styles.buttons}>
-            <Button className={Styles.cancelButton}>Cancel</Button>
+            <Button onClick={props.onCancel} className={Styles.cancelButton}>
+              Cancel
+            </Button>
             <Button onClick={props.onDelete} severity="danger" icon="fa-regular fa-trash-can" />
           </div>
         </div>

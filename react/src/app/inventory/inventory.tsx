@@ -33,10 +33,21 @@ export const Inventory: React.FunctionComponent = () => {
     });
   };
 
+  const cancelItem = (toCancel: InventoryItem) => {
+    setItems(items =>
+      items.map(item => {
+        if (item.id !== toCancel.id) return item;
+
+        return { ...item, bottle_amount: item.previousAmount };
+      }),
+    );
+  };
+
   const saveItems = () => {
-    axios
-      .put(API_URL + "/inventory/", items)
-      .then(() => showToast({ severity: "info", summary: "Changes saved" }));
+    axios.put(API_URL + "/inventory/", items).then(() => {
+      showToast({ severity: "info", summary: "Changes saved" });
+      setItems(items => items.map(item => ({ ...item, previousAmount: item.bottle_amount })));
+    });
   };
 
   const onUnfocusClick = () => {
@@ -74,6 +85,7 @@ export const Inventory: React.FunctionComponent = () => {
               )
             }
             onDelete={() => deleteItem(item)}
+            onCancel={() => cancelItem(item)}
           />
         ))}
         <NewItemCard onCreateItem={onCreateItem} />
