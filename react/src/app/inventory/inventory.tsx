@@ -28,7 +28,19 @@ export const Inventory: React.FunctionComponent = () => {
 
   const deleteItem = (toDelete: InventoryItem) => {
     axios.delete(API_URL + "/inventory/" + toDelete.id + "/").then(() => {
-      setItems(items => items.filter(item => item.id !== toDelete.id));
+      const removeFromItems = () => {
+        setItems(items => items.filter(item => item.id !== toDelete.id));
+      };
+
+      setItems(items =>
+        items.map(item => {
+          if (item.id !== toDelete.id) return item;
+
+          // Only remove item after 1s because we need it to still be present for the animation to play
+          setTimeout(removeFromItems, 1000);
+          return { ...item, deleted: true };
+        }),
+      );
       showToast({ severity: "info", summary: `${toDelete.brand_name} was deleted` });
     });
   };
@@ -44,10 +56,15 @@ export const Inventory: React.FunctionComponent = () => {
   };
 
   const saveItems = () => {
-    axios.put(API_URL + "/inventory/", items).then(() => {
-      showToast({ severity: "info", summary: "Changes saved" });
-      setItems(items => items.map(item => ({ ...item, previousAmount: item.bottle_amount })));
-    });
+    axios
+      .put(
+        API_URL + "/inventory/",
+        items.filter(item => !item.deleted),
+      )
+      .then(() => {
+        showToast({ severity: "info", summary: "Changes saved" });
+        setItems(items => items.map(item => ({ ...item, previousAmount: item.bottle_amount })));
+      });
   };
 
   const onUnfocusClick = () => {
@@ -67,10 +84,7 @@ export const Inventory: React.FunctionComponent = () => {
         {items.map(item => (
           <ItemCard
             key={item.id}
-            brandName={item.brand_name}
-            bottleSize={item.bottle_size}
-            quantity={item.bottle_amount}
-            crateSize={item.crate_size}
+            item={item}
             setInFocus={() => setFocusedItemId(item.id)}
             expanded={focusedItemId == item.id}
             setQuantity={quantity =>

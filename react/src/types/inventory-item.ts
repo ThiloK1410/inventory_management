@@ -5,4 +5,5 @@ export type InventoryItem = {
   bottle_size: number;
   crate_size?: number;
   previousAmount: number;
+  deleted: boolean;
 }
