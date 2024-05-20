@@ -30,17 +30,15 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
           </div>
           <div className={Styles.quantity}>{props.quantity}</div>
         </div>
-        {props.expanded && (
-          <div className={Styles.cardControls}>
-            <div>
-              <QuantityInput quantity={props.quantity} setQuantity={props.setQuantity}/>
-            </div>
-            <div className={Styles.buttons}>
-              <Button className={Styles.cancelButton}>Cancel</Button>
-              <Button onClick={props.onDelete} severity="danger" icon="fa-regular fa-trash-can" />
-            </div>
+        <div className={Styles.cardControls}>
+          <div>
+            <QuantityInput quantity={props.quantity} setQuantity={props.setQuantity} />
           </div>
-        )}
+          <div className={Styles.buttons}>
+            <Button className={Styles.cancelButton}>Cancel</Button>
+            <Button onClick={props.onDelete} severity="danger" icon="fa-regular fa-trash-can" />
+          </div>
+        </div>
       </div>
     </>
   );

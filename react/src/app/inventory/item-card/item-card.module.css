@@ -5,11 +5,22 @@
   display: flex;
   flex-direction: column;
   padding: 1.125rem 1.2rem;
-  z-index: 1;
+  z-index: 2;
+  max-height: 4rem;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.itemCard>.cardControls {
+  visibility: hidden;
 }
 
 .expanded {
-  z-index: 2;
+  max-height: 12rem;
+}
+
+.expanded>.cardControls {
+  visibility: visible;
 }
 
 .label {
@@ -51,4 +62,5 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 0.5rem;
+  transition: visibility 0.5s;
 }
