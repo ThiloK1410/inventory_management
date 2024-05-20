@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import { Button } from "primereact/button";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../constants";
 import { InventoryItem } from "../../types/inventory-item";
+import { ToastContext } from "../toast-context";
 import Styles from "./inventory.module.css";
 import { ItemCard } from "./item-card/item-card";
 import { NewItemCard } from "./new-item-card/new-item-card";
@@ -10,6 +11,8 @@ import { NewItemCard } from "./new-item-card/new-item-card";
 export const Inventory: React.FunctionComponent = () => {
   const [items, setItems] = useState<InventoryItem[]>([]);
   const [focusedItemId, setFocusedItemId] = useState<number | undefined | "new">();
+
+  const showToast = useContext(ToastContext);
 
   useEffect(() => {
     fetchItems();
@@ -23,14 +26,17 @@ export const Inventory: React.FunctionComponent = () => {
       );
   };
 
-  const deleteItem = (toDelete: number) => {
-    axios
-      .delete(API_URL + "/inventory/" + toDelete + "/")
-      .then(() => setItems(items => items.filter(item => item.id !== toDelete)));
+  const deleteItem = (toDelete: InventoryItem) => {
+    axios.delete(API_URL + "/inventory/" + toDelete.id + "/").then(() => {
+      setItems(items => items.filter(item => item.id !== toDelete.id));
+      showToast({ severity: "info", summary: `${toDelete.brand_name} was deleted` });
+    });
   };
 
   const saveItems = () => {
-    axios.put(API_URL + "/inventory/", items);
+    axios
+      .put(API_URL + "/inventory/", items)
+      .then(() => showToast({ severity: "info", summary: "Changes saved" }));
   };
 
   const onUnfocusClick = () => {
@@ -67,7 +73,7 @@ export const Inventory: React.FunctionComponent = () => {
                 }),
               )
             }
-            onDelete={() => deleteItem(item.id)}
+            onDelete={() => deleteItem(item)}
           />
         ))}
         <NewItemCard onCreateItem={onCreateItem} />
