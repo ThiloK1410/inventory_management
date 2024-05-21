@@ -22,6 +22,8 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
       : props.item.bottle_size
   }L x ${props.item.crate_size}`;
 
+  const dirty = props.item.bottle_amount != props.item.previousAmount;
+
   const crateAmount = props.item.crate_size
     ? Math.floor(props.item.bottle_amount / props.item.crate_size)
     : undefined;
@@ -112,7 +114,13 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
           </div>
         </div>
         <div className={Styles.buttons}>
-          <Button outlined rounded onClick={props.onCancel} className={Styles.cancelButton}>
+          <Button
+            outlined
+            rounded
+            onClick={props.onCancel}
+            className={Styles.cancelButton}
+            disabled={!dirty}
+          >
             Reset
           </Button>
           <Button
@@ -122,7 +130,7 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
             severity="danger"
             icon={!upForDeletion && "fa-regular fa-trash-can"}
           >
-            {upForDeletion && <span>Delete Permanently</span>}
+            {upForDeletion && <span>Delete</span>}
           </Button>
         </div>
       </div>

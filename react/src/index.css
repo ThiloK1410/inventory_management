@@ -49,7 +49,3 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-.p-button.p-disabled {
-  background-color: grey;
-}
