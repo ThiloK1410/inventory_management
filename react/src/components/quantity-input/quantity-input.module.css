@@ -1,0 +1,18 @@
+.quantityInput {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.increaseButton,
+.decreaseButton {
+  font-size: 1rem;
+  width: auto;
+}
+
+.inputNumber {
+  font-size: 1rem;
+  width: 3rem;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}

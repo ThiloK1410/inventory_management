@@ -108,7 +108,7 @@ export const Inventory: React.FunctionComponent = () => {
       </div>
       {focusedItemId && <div className={Styles.unfocus} onClick={onUnfocusClick} />}
       {dirty && (
-        <Button className={Styles.saveButton} onClick={saveItems}>
+        <Button rounded className={Styles.saveButton} onClick={saveItems}>
           Save
         </Button>
       )}

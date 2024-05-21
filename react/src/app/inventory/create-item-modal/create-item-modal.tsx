@@ -4,7 +4,7 @@ import { InputText } from "primereact/inputtext";
 import React, { useState } from "react";
 import { Modal } from "../../../components/modal/modal";
 import { API_URL } from "../../../constants";
-import { InventoryCard } from "../inventory-card/inventory-card";
+import { ModalItemCard } from "../modal-item-card/modal-item-card";
 import Styles from "./create-item-modal.module.css";
 
 type NewItemCardProps = {
@@ -44,7 +44,7 @@ export const CreateItemModal: React.FunctionComponent<NewItemCardProps> = props 
 
   return (
     <Modal>
-      <InventoryCard onCancel={() => setShowDialog(false)} onConfirm={onConfirm}>
+      <ModalItemCard onCancel={() => setShowDialog(false)} onConfirm={onConfirm}>
         <div className={Styles.container}>
           <span className={Styles.title}>Create new inventory item</span>
           <label>Brand name</label>
@@ -54,7 +54,7 @@ export const CreateItemModal: React.FunctionComponent<NewItemCardProps> = props 
           <label>Crate size</label>
           <InputText value={crateSize} onChange={e => setCrateSize(e.target.value)} />
         </div>
-      </InventoryCard>
+      </ModalItemCard>
     </Modal>
   );
 };

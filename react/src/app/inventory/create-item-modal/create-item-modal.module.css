@@ -19,6 +19,7 @@
   border-width: 0.25rem !important;
   color: var(--grey-85) !important;
   font-size: 2rem;
+  z-index: 2;
 }
 
 .newButton:hover {

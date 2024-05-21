@@ -22,6 +22,14 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
       : props.item.bottle_size
   }L x ${props.item.crate_size}`;
 
+  const crateAmount = props.item.crate_size
+    ? Math.floor(props.item.bottle_amount / props.item.crate_size)
+    : undefined;
+
+  const bottleSurplus = props.item.crate_size
+    ? props.item.bottle_amount % props.item.crate_size
+    : props.item.bottle_amount;
+
   return (
     <>
       <div
@@ -58,14 +66,38 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
           </div>
         </div>
         <div className={Styles.cardControls}>
-          <div>
-            <QuantityInput quantity={props.item.bottle_amount} setQuantity={props.setQuantity} />
+          <div className={Styles.quantityControl}>
+            {crateAmount !== undefined && (
+              <div className={Styles.labelBox}>
+                <label>Crates</label>
+                <QuantityInput
+                  quantity={crateAmount}
+                  setQuantity={quantity =>
+                    props.setQuantity(quantity * props.item.crate_size! + bottleSurplus)
+                  }
+                />
+              </div>
+            )}
+            <div className={Styles.labelBox}>
+              <label>Bottles</label>
+              <QuantityInput
+                quantity={bottleSurplus}
+                setQuantity={quantity =>
+                  props.setQuantity((crateAmount ?? 0) * (props.item.crate_size ?? 0) + quantity)
+                }
+              />
+            </div>
           </div>
           <div className={Styles.buttons}>
-            <Button onClick={props.onCancel} className={Styles.cancelButton}>
+            <Button rounded onClick={props.onCancel} className={Styles.cancelButton}>
               Cancel
             </Button>
-            <Button onClick={props.onDelete} severity="danger" icon="fa-regular fa-trash-can" />
+            <Button
+              rounded
+              onClick={props.onDelete}
+              severity="danger"
+              icon="fa-regular fa-trash-can"
+            />
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 :root {
-  --labaix-blue: #00414B;
-  --labaix-orange: #EFAB04;
+  --labaix-blue: #00414b;
+  --labaix-orange: #efab04;
   --grey-95: #f2f2f2;
   --grey-85: #d9d9d9;
   --grey-60: #999999;
   --grey-40: #666666;
-  --pastel-green: #79EC79;
-  --pastel-red: #EC7979;
+  --pastel-green: #79ec79;
+  --pastel-red: #ec7979;
   --default-background: white;
   --default-text-color: black;
 
@@ -32,13 +32,13 @@ body {
 }
 
 .p-button {
-  border-radius: 2rem;
+  /* border-radius: 2rem; */
   background-color: var(--labaix-blue);
   border-width: 0;
 }
 
 .p-button-danger {
-  background-color: #D92626 !important;
+  background-color: #d92626 !important;
 }
 
 #root {
