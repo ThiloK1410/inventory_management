@@ -5,6 +5,7 @@ import { InputNumber } from "primereact/inputnumber";
 
 type QuantityInputProps = {
   quantity: number;
+  decrementDisabled: boolean;
   setQuantity: (value: number) => void;
 };
 
@@ -13,11 +14,10 @@ export const QuantityInput: React.FunctionComponent<QuantityInputProps> = props 
     <div className={Styles.quantityInput}>
       <Button
         rounded
+        disabled={props.decrementDisabled}
         className={Styles.decreaseButton}
         icon="fa-solid fa-minus"
-        onClick={() =>
-          props.setQuantity(props.quantity <= 0 ? (props.quantity = 0) : props.quantity - 1)
-        }
+        onClick={() => props.setQuantity(props.quantity - 1)}
       />
       <InputNumber
         value={props.quantity}
@@ -30,9 +30,7 @@ export const QuantityInput: React.FunctionComponent<QuantityInputProps> = props 
         rounded
         className={Styles.increaseButton}
         icon="fa-solid fa-plus"
-        onClick={() =>
-          props.setQuantity(props.quantity < 999 ? props.quantity + 1 : (props.quantity = 999))
-        }
+        onClick={() => props.setQuantity(props.quantity + 1)}
       />
     </div>
   );

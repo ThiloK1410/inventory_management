@@ -24,6 +24,29 @@
   visibility: visible;
 }
 
+.cancelButton {
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: space-around;
+  transition: flex-grow 0.5s ease-in-out;
+}
+
+.deleteButton {
+  transition: flex-grow 0.5s ease-in-out;
+}
+
+.upForDeletion {
+  flex-basis: 0;
+  flex-grow: 1;
+  justify-content: center;
+  min-width: 2.857rem;
+}
+
+.upForDeletion > span {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .deleted {
   transform: translateX(-100vw);
   max-height: 0rem;
@@ -68,12 +91,6 @@
   display: flex;
   gap: 1rem;
   justify-content: space-between;
-  flex-grow: 1;
-}
-
-.cancelButton {
-  flex-grow: 1;
-  justify-content: space-around;
 }
 
 .cardControls {

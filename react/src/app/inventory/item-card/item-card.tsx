@@ -1,5 +1,5 @@
 import { Button } from "primereact/button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { QuantityInput } from "../../../components/quantity-input/quantity-input";
 import { InventoryItem } from "../../../types/inventory-item";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,6 +29,18 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
   const bottleSurplus = props.item.crate_size
     ? props.item.bottle_amount % props.item.crate_size
     : props.item.bottle_amount;
+
+  const [upForDeletion, setUpForDeletion] = useState(false);
+
+  useEffect(() => {
+    if (props.expanded || !upForDeletion) return;
+    setTimeout(() => setUpForDeletion(false), 500);
+  }, [props.expanded]);
+
+  const tryDeletion = () => {
+    if (!upForDeletion) return setUpForDeletion(true);
+    props.onDelete();
+  };
 
   return (
     <div
@@ -70,6 +82,7 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
             <div className={Styles.labelBox}>
               <label>Crates</label>
               <QuantityInput
+                decrementDisabled={props.item.bottle_amount - props.item.crate_size! < 0}
                 quantity={crateAmount}
                 setQuantity={quantity =>
                   props.setQuantity(quantity * props.item.crate_size! + bottleSurplus)
@@ -80,6 +93,7 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
           <div className={Styles.labelBox}>
             <label>Bottles</label>
             <QuantityInput
+              decrementDisabled={props.item.bottle_amount === 0}
               quantity={bottleSurplus}
               setQuantity={quantity =>
                 props.setQuantity((crateAmount ?? 0) * (props.item.crate_size ?? 0) + quantity)
@@ -89,14 +103,17 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
         </div>
         <div className={Styles.buttons}>
           <Button outlined rounded onClick={props.onCancel} className={Styles.cancelButton}>
-            Cancel
+            Reset
           </Button>
           <Button
+            className={[Styles.deleteButton, upForDeletion ? Styles.upForDeletion : ""].join(" ")}
             rounded
-            onClick={props.onDelete}
+            onClick={tryDeletion}
             severity="danger"
-            icon="fa-regular fa-trash-can"
-          />
+            icon={!upForDeletion && "fa-regular fa-trash-can"}
+          >
+            {upForDeletion && <span>Delete Permanently</span>}
+          </Button>
         </div>
       </div>
     </div>
