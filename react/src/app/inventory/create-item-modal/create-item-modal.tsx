@@ -5,13 +5,13 @@ import React, { useState } from "react";
 import { Modal } from "../../../components/modal/modal";
 import { API_URL } from "../../../constants";
 import { InventoryCard } from "../inventory-card/inventory-card";
-import Styles from "./new-item-card.module.css";
+import Styles from "./create-item-modal.module.css";
 
 type NewItemCardProps = {
   onCreateItem: () => void;
-}
+};
 
-export const NewItemCard: React.FunctionComponent<NewItemCardProps> = props => {
+export const CreateItemModal: React.FunctionComponent<NewItemCardProps> = props => {
   const [brandName, setBrandName] = useState("");
   const [bottleSize, setBottleSize] = useState("");
   const [crateSize, setCrateSize] = useState("");
@@ -25,18 +25,21 @@ export const NewItemCard: React.FunctionComponent<NewItemCardProps> = props => {
       crate_size: crateSize,
     };
 
-    axios
-      .post(API_URL + "/inventory/", item)
-      .then(() => {
-        props.onCreateItem();
-        setShowDialog(false);
-      });
+    axios.post(API_URL + "/inventory/", item).then(() => {
+      props.onCreateItem();
+      setShowDialog(false);
+    });
   };
 
-  if(!showDialog) {
+  if (!showDialog) {
     return (
-      <Button className={Styles.newButton} icon="fas fa-plus" outlined onClick={() => setShowDialog(true)} />
-    )
+      <Button
+        className={Styles.newButton}
+        icon="fas fa-plus"
+        outlined
+        onClick={() => setShowDialog(true)}
+      />
+    );
   }
 
   return (

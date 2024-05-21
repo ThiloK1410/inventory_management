@@ -6,7 +6,7 @@ import { InventoryItem } from "../../types/inventory-item";
 import { ToastContext } from "../toast-context";
 import Styles from "./inventory.module.css";
 import { ItemCard } from "./item-card/item-card";
-import { NewItemCard } from "./new-item-card/new-item-card";
+import { CreateItemModal } from "./create-item-modal/create-item-modal";
 
 export const Inventory: React.FunctionComponent = () => {
   const [items, setItems] = useState<InventoryItem[]>([]);
@@ -102,7 +102,7 @@ export const Inventory: React.FunctionComponent = () => {
             onCancel={() => cancelItem(item)}
           />
         ))}
-        <NewItemCard onCreateItem={onCreateItem} />
+        <CreateItemModal onCreateItem={onCreateItem} />
       </div>
       {focusedItemId && <div className={Styles.unfocus} onClick={onUnfocusClick} />}
       {dirty && (
