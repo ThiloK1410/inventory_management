@@ -83,10 +83,13 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
               <label>Crates</label>
               <QuantityInput
                 decrementDisabled={props.item.bottle_amount - props.item.crate_size! < 0}
+                incrementDisabled={crateAmount === 999}
                 quantity={crateAmount}
                 setQuantity={quantity =>
                   props.setQuantity(quantity * props.item.crate_size! + bottleSurplus)
                 }
+                min={0}
+                max={999}
               />
             </div>
           )}
@@ -94,10 +97,17 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
             <label>Bottles</label>
             <QuantityInput
               decrementDisabled={props.item.bottle_amount === 0}
+              incrementDisabled={
+                props.item.crate_size
+                  ? crateAmount === 999 && bottleSurplus === props.item.crate_size - 1
+                  : bottleSurplus === 999
+              }
               quantity={bottleSurplus}
               setQuantity={quantity =>
                 props.setQuantity((crateAmount ?? 0) * (props.item.crate_size ?? 0) + quantity)
               }
+              min={0}
+              max={props.item.crate_size ? props.item.crate_size - 1 : 999}
             />
           </div>
         </div>

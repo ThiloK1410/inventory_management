@@ -47,12 +47,17 @@ export const CreateItemModal: React.FunctionComponent<NewItemCardProps> = props 
       <ModalItemCard onCancel={() => setShowDialog(false)} onConfirm={onConfirm}>
         <div className={Styles.container}>
           <span className={Styles.title}>Create new inventory item</span>
-          <label>Brand name</label>
+          <label>Brand name *</label>
           <InputText value={brandName} onChange={e => setBrandName(e.target.value)} />
-          <label>Bottle size</label>
+          <label>Bottle size *</label>
           <InputText value={bottleSize} onChange={e => setBottleSize(e.target.value)} />
           <label>Crate size</label>
-          <InputText value={crateSize} onChange={e => setCrateSize(e.target.value)} />
+          <InputText
+            placeholder="Leave empty for loose bottles"
+            keyfilter="pint"
+            value={crateSize}
+            onChange={e => setCrateSize(e.target.value)}
+          />
         </div>
       </ModalItemCard>
     </Modal>

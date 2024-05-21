@@ -1,12 +1,15 @@
 import { Button } from "primereact/button";
 import React from "react";
 import Styles from "./quantity-input.module.css";
-import { InputNumber } from "primereact/inputnumber";
+import { InputNumber, InputNumberValueChangeEvent } from "primereact/inputnumber";
 
 type QuantityInputProps = {
   quantity: number;
   decrementDisabled: boolean;
+  incrementDisabled: boolean;
   setQuantity: (value: number) => void;
+  min?: number;
+  max?: number;
 };
 
 export const QuantityInput: React.FunctionComponent<QuantityInputProps> = props => {
@@ -21,13 +24,14 @@ export const QuantityInput: React.FunctionComponent<QuantityInputProps> = props 
       />
       <InputNumber
         value={props.quantity}
-        onChange={e => props.setQuantity(e.value ?? 0)}
+        onValueChange={(e: InputNumberValueChangeEvent) => props.setQuantity(e.value ?? 0)}
         inputClassName={Styles.inputNumber}
-        min={0}
-        max={999}
+        min={props.min}
+        max={props.max}
       />
       <Button
         rounded
+        disabled={props.incrementDisabled}
         className={Styles.increaseButton}
         icon="fa-solid fa-plus"
         onClick={() => props.setQuantity(props.quantity + 1)}
