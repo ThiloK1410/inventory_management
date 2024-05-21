@@ -3,7 +3,7 @@ export type InventoryItem = {
   brand_name: string;
   bottle_amount: number;
   bottle_size: number;
-  crate_size?: number;
+  crate_size: number | null;
   previousAmount: number;
   deleted: boolean;
 }

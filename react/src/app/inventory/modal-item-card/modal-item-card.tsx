@@ -13,7 +13,7 @@ export const ModalItemCard: React.FunctionComponent<
   <div className={Styles.card}>
     {props.children}
     <div className={Styles.buttons}>
-      <Button icon="fas fa-times" onClick={props.onCancel} />
+      <Button outlined icon="fas fa-times" onClick={props.onCancel} />
       <Button icon="fas fa-check" onClick={props.onConfirm} />
     </div>
   </div>

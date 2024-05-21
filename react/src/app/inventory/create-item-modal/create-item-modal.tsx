@@ -22,7 +22,7 @@ export const CreateItemModal: React.FunctionComponent<NewItemCardProps> = props 
       brand_name: brandName,
       bottle_size: bottleSize,
       bottle_amount: 0,
-      crate_size: crateSize,
+      crate_size: crateSize === "" ? undefined : crateSize,
     };
 
     axios.post(API_URL + "/inventory/", item).then(() => {

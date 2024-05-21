@@ -6,11 +6,12 @@
 }
 
 .buttons {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   display: flex;
   gap: 0.5rem;
 }
 
 .buttons button {
   flex-grow: 1;
+  border-radius: 2rem;
 }

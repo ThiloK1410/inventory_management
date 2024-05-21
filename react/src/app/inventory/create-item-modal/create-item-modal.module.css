@@ -14,11 +14,11 @@
 
 .newButton {
   width: 100% !important;
-  border-radius: 2rem;
+  border-radius: 3rem;
   border-color: var(--grey-85) !important;
-  border-width: 0.25rem !important;
+  border-width: 0.185rem !important;
   color: var(--grey-85) !important;
-  font-size: 2rem;
+  font-size: 1.6rem;
   z-index: 2;
 }
 

@@ -2,9 +2,7 @@ import { Button } from "primereact/button";
 import React, { useEffect, useState } from "react";
 import { QuantityInput } from "../../../components/quantity-input/quantity-input";
 import { InventoryItem } from "../../../types/inventory-item";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Styles from "./item-card.module.css";
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 type ItemCardProps = {
   item: InventoryItem;
@@ -16,12 +14,6 @@ type ItemCardProps = {
 };
 
 export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
-  const details = `${
-    Number.isInteger(props.item.bottle_size)
-      ? props.item.bottle_size.toFixed(1)
-      : props.item.bottle_size
-  }L x ${props.item.crate_size}`;
-
   const dirty = props.item.bottle_amount != props.item.previousAmount;
 
   const crateAmount = props.item.crate_size
@@ -38,6 +30,20 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
     if (props.expanded || !upForDeletion) return;
     setTimeout(() => setUpForDeletion(false), 500);
   }, [props.expanded]);
+
+  const details = (() => {
+    if (props.item.crate_size !== null)
+      return `${
+        Number.isInteger(props.item.bottle_size)
+          ? props.item.bottle_size.toFixed(1)
+          : props.item.bottle_size
+      }L x ${props.item.crate_size}`;
+    return `${
+      Number.isInteger(props.item.bottle_size)
+        ? props.item.bottle_size.toFixed(1)
+        : props.item.bottle_size
+    }L`;
+  })();
 
   const tryDeletion = () => {
     if (!upForDeletion) return setUpForDeletion(true);
@@ -65,13 +71,13 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
           </span>
           <span>
             {props.item.bottle_amount !== props.item.previousAmount && (
-              <FontAwesomeIcon
-                className={
+              <i
+                className={[
+                  "fa-solid fa-caret-right",
                   props.item.bottle_amount > props.item.previousAmount
                     ? Styles.increaseCaret
-                    : Styles.decreaseCaret
-                }
-                icon={faCaretRight}
+                    : Styles.decreaseCaret,
+                ].join(" ")}
               />
             )}
           </span>

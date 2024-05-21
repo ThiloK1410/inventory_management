@@ -62,6 +62,29 @@
 
 .label {
   align-self: center;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: baseline;
+}
+
+/* header row */
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  font-size: 1.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.itemDetails {
+  margin-left: 0.4rem;
+  color: var(--grey-40);
+  white-space: nowrap;
 }
 
 .quantity {
@@ -70,34 +93,6 @@
   align-self: center;
   display: flex;
   gap: 0.6rem;
-}
-
-.brand {
-  font-size: 1.5rem;
-}
-
-.itemDetails {
-  margin-left: 0.4rem;
-  color: var(--grey-40);
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.buttons {
-  margin-top: 0.5rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-}
-
-.cardControls {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  transition: visibility 0.5s;
 }
 
 .increaseCaret {
@@ -111,6 +106,21 @@
 .increaseCaret,
 .decreaseCaret {
   font-size: 1.5rem;
+}
+
+/* button row */
+.buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.cardControls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: visibility 0.5s;
 }
 
 .quantityControl {
