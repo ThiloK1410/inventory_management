@@ -5,7 +5,7 @@ Set-Location "C:\Users\maxbo\Desktop\inventory_management\backend"  # Set the lo
 Write-Host "Running migrations..."
 Start-Process -NoNewWindow -FilePath "python" -ArgumentList "manage.py migrate"  # Start migration
 Write-Host "Starting django dev server..."
-Start-Process -NoNewWindow -FilePath "python" -ArgumentList "manage.py runserver"
+Start-Process -FilePath "python" -ArgumentList "manage.py runserver"
 
 # Start React
 Write-Host "Installing npm packages if necessary..."
