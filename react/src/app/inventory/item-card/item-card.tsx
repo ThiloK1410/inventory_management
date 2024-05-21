@@ -2,7 +2,9 @@ import { Button } from "primereact/button";
 import React from "react";
 import { QuantityInput } from "../../../components/quantity-input/quantity-input";
 import { InventoryItem } from "../../../types/inventory-item";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Styles from "./item-card.module.css";
+import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 type ItemCardProps = {
   item: InventoryItem;
@@ -31,7 +33,20 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
             <span className={Styles.brand}>{props.item.brand_name}</span>
             <span className={Styles.itemDetails}>{details}</span>
           </div>
-          <div className={Styles.quantity}>{props.item.bottle_amount}</div>
+          <div className={Styles.quantity}>
+            {props.item.bottle_amount !== props.item.previousAmount && props.item.previousAmount} 
+            {props.item.bottle_amount !== props.item.previousAmount && (
+              <FontAwesomeIcon
+                className={
+                  props.item.bottle_amount > props.item.previousAmount
+                    ? Styles.increaseCaret
+                    : Styles.decreaseCaret
+                }
+                icon={faCaretRight}
+              />
+            )} 
+            {props.item.bottle_amount}
+          </div>
         </div>
         <div className={Styles.cardControls}>
           <div>

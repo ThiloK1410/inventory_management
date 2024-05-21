@@ -73,3 +73,11 @@
   margin-top: 0.5rem;
   transition: visibility 0.5s;
 }
+
+.increaseCaret {
+  color:green;
+}
+
+.decreaseCaret {
+  color: red;
+}
