@@ -53,6 +53,7 @@ export const Inventory: React.FunctionComponent = () => {
         return { ...item, bottle_amount: item.previousAmount };
       }),
     );
+    setFocusedItemId(undefined);
   };
 
   const saveItems = () => {

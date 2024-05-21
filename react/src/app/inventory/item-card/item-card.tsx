@@ -16,7 +16,11 @@ type ItemCardProps = {
 };
 
 export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
-  const details = `${props.item.bottle_size} x ${props.item.crate_size}`;
+  const details = `${
+    Number.isInteger(props.item.bottle_size)
+      ? props.item.bottle_size.toFixed(1)
+      : props.item.bottle_size
+  }L x ${props.item.crate_size}`;
 
   return (
     <>
