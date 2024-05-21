@@ -65,6 +65,7 @@ export const Inventory: React.FunctionComponent = () => {
         showToast({ severity: "info", summary: "Changes saved" });
         setItems(items => items.map(item => ({ ...item, previousAmount: item.bottle_amount })));
       });
+      setFocusedItemId(undefined);
   };
 
   const onUnfocusClick = () => {
