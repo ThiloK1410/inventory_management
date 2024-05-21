@@ -11,7 +11,7 @@
   transition: max-height 0.5s ease-in-out;
 }
 
-.itemCard>.cardControls {
+.itemCard > .cardControls {
   visibility: hidden;
 }
 
@@ -19,7 +19,7 @@
   max-height: 12rem;
 }
 
-.expanded>.cardControls {
+.expanded > .cardControls {
   visibility: visible;
 }
 
@@ -29,7 +29,11 @@
   padding: 0;
   /* remove gap */
   margin-top: -1rem;
-  transition: transform 0.5s ease-in-out, max-height 0.5s 0.5s ease-in-out, padding 0.5s 0.5s ease-in-out, margin-top 0.5s 0.5s ease-in-out;
+  transition:
+    transform 0.5s ease-in-out,
+    max-height 0.5s 0.5s ease-in-out,
+    padding 0.5s 0.5s ease-in-out,
+    margin-top 0.5s 0.5s ease-in-out;
 }
 
 .label {
@@ -40,6 +44,8 @@
   justify-self: right;
   font-size: 1.5rem;
   align-self: center;
+  display: flex;
+  gap: 0.6rem;
 }
 
 .brand {
@@ -48,7 +54,7 @@
 
 .itemDetails {
   margin-left: 0.4rem;
-  color: var(--grey-40)
+  color: var(--grey-40);
 }
 
 .header {
@@ -75,9 +81,14 @@
 }
 
 .increaseCaret {
-  color:green;
+  color: green;
 }
 
 .decreaseCaret {
   color: red;
+}
+
+.increaseCaret,
+.decreaseCaret {
+  font-size: 1.5rem;
 }

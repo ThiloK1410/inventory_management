@@ -33,19 +33,24 @@ export const ItemCard: React.FunctionComponent<ItemCardProps> = props => {
             <span className={Styles.brand}>{props.item.brand_name}</span>
             <span className={Styles.itemDetails}>{details}</span>
           </div>
+
           <div className={Styles.quantity}>
-            {props.item.bottle_amount !== props.item.previousAmount && props.item.previousAmount} 
-            {props.item.bottle_amount !== props.item.previousAmount && (
-              <FontAwesomeIcon
-                className={
-                  props.item.bottle_amount > props.item.previousAmount
-                    ? Styles.increaseCaret
-                    : Styles.decreaseCaret
-                }
-                icon={faCaretRight}
-              />
-            )} 
-            {props.item.bottle_amount}
+            <span>
+              {props.item.bottle_amount !== props.item.previousAmount && props.item.previousAmount}
+            </span>
+            <span>
+              {props.item.bottle_amount !== props.item.previousAmount && (
+                <FontAwesomeIcon
+                  className={
+                    props.item.bottle_amount > props.item.previousAmount
+                      ? Styles.increaseCaret
+                      : Styles.decreaseCaret
+                  }
+                  icon={faCaretRight}
+                />
+              )}
+            </span>
+            <span>{props.item.bottle_amount}</span>
           </div>
         </div>
         <div className={Styles.cardControls}>
