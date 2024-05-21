@@ -19,7 +19,7 @@
 }
 
 .items::-webkit-scrollbar {
-  width: .75rem;
+  width: 0.75rem;
 }
 
 .items::-webkit-scrollbar-thumb {
@@ -27,7 +27,8 @@
   border-radius: 1rem;
 }
 
-.items>div, .items>button {
+.items > div,
+.items > button {
   flex-shrink: 0;
 }
 
@@ -42,10 +43,9 @@
 
 .saveButton {
   position: absolute;
-  bottom: 1rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding: 0.75rem 5rem;
 }

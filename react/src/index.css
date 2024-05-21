@@ -32,13 +32,17 @@ body {
 }
 
 .p-button {
-  /* border-radius: 2rem; */
   background-color: var(--labaix-blue);
   border-width: 0;
 }
 
 .p-button-danger {
   background-color: #d92626 !important;
+}
+
+.p-button-outlined {
+  border-color: var(--labaix-blue) !important;
+  color: var(--labaix-blue) !important;
 }
 
 #root {
