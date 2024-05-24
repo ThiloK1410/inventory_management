@@ -7,6 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./app/app.tsx";
 import "./index.css";
+import { FridgeWithdrawal } from "./app/fridge-withdrawal/fridge-withdrawal.tsx";
 
 axios.defaults.headers.common["X-CSRFToken"] = document.cookie
   .split("; ")
@@ -15,6 +16,7 @@ axios.defaults.headers.common["X-CSRFToken"] = document.cookie
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <FridgeWithdrawal/>
   </React.StrictMode>,
 );
